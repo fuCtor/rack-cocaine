@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require "rack-cocaine"
-CocaineRack::Server.start
+RackCocaine::Server.start

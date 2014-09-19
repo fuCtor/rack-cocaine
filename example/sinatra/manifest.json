@@ -1,5 +1,5 @@
 {
-    "slave": "test.rb",
+    "slave": "start.rb",
     "environment": {
         "HOSTNAME": "192.168.0.47",
         "PORT": "8080"

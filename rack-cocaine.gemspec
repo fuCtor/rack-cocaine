@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.extensions = []
 
-  s.summary = 'Rake adapter for Cocaine'
+  s.summary = 'Rake adapter for Cocaine Cloud'
   s.description = 'RakeCocaine is a adapter for load Rack application as Cocaine worker.'
 
   s.add_development_dependency 'rspec', '~> 0'

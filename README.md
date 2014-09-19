@@ -1,16 +1,39 @@
-Introducing cocaine-framework-ruby
+Introducing Rack Cocaine adapter
 ========================================
 
-Here you are, almighty Ruby programmers! Introducing another framework for our Cocaine Cloud.
-This time it is cocaine-framework-ruby.
+Adapter for loading rack applications in Cocaine Cloud as worker.
 
- * Requires at least Ruby 1.9
+## Using
 
-Framework provides next features:
+You can use command from gem: rackup-cocain
+Our you can write custom bootstrap file:
+`
+    #!/usr/bin/env ruby
 
- * Ability to create your own apps and upload it to the Cloud.
- * Ability to use other Cloud services or apps.
- * Explicit future-based asynchronous backend to maximize performance without using threads.
- * Fiber-aware asynchronous backend to make your asynchronous code look like it is synchronous.
- * Integration with our http-proxy for simple applications.
- * [In the nearest future] Ruby on Rails support.
+    require 'cocaine-rack'
+    CocaineRack::Server.start do |worker, app|
+        # some another code for worker init
+    end
+`
+
+Worker don't know self hostname and port.
+You can define it through manifest:
+`
+{
+    "slave": "start.rb",
+    "environment": {
+        "HOSTNAME": "192.168.0.47",
+        "PORT": "8080"
+    }
+}
+`
+or
+`
+{
+    "slave": "rackup-cocaine",
+    "environment": {
+        "HOSTNAME": "192.168.0.47",
+        "PORT": "8080"
+    }
+}
+`
