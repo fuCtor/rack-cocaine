@@ -7,18 +7,18 @@ Adapter for loading rack applications in Cocaine Cloud as worker.
 
 You can use command from gem: rackup-cocain
 Our you can write custom bootstrap file:
-`
+```ruby
     #!/usr/bin/env ruby
 
     require 'cocaine-rack'
     CocaineRack::Server.start do |worker, app|
         # some another code for worker init
     end
-`
+```
 
 Worker don't know self hostname and port.
 You can define it through manifest:
-`
+```ruby
 {
     "slave": "start.rb",
     "environment": {
@@ -26,9 +26,9 @@ You can define it through manifest:
         "PORT": "8080"
     }
 }
-`
+```
 or
-`
+```ruby
 {
     "slave": "rackup-cocaine",
     "environment": {
@@ -36,4 +36,4 @@ or
         "PORT": "8080"
     }
 }
-`
+```
