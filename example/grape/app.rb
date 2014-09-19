@@ -31,5 +31,9 @@ module Twitter
         {:count => 0 }
       end
     end
+
+    route :any, '*path' do
+      env
+    end
   end
 end
