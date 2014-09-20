@@ -24,9 +24,9 @@ module RackCocaine
 
           # should take a look to RACK SPEC.
           env = Hash[*headers.flatten]
-          parsed_url = URI.parse(url)
-          default_hostname = ENV['HOSTNAME'].encode('utf-8') || parsed_url.hostname  || 'localhost'
-          default_port = ENV['PORT'].encode('utf-8') || parsed_url.port || '80'
+          parsed_url = URI.parse("http://#{env['Host']}#{url}")
+          default_hostname = ENV['HOSTNAME'] || parsed_url.hostname  || 'localhost'
+          default_port = ENV['PORT'] || parsed_url.port || '80'
           env.update({
               "GATEWAY_INTERFACE" => "Cocaine/#{Cocaine::VERSION}",
               "PATH_INFO" => parsed_url.path || '',
@@ -38,7 +38,7 @@ module RackCocaine
               "SCRIPT_NAME" => "",
               "SERVER_NAME" => default_hostname,
               "SERVER_PROTOCOL" => "HTTP/#{version}",
-              "SERVER_PORT" => default_port,
+              "SERVER_PORT" => default_port.to_s,
               "rack.version" => Rack::VERSION,
               "rack.input" => stringio_encode(body),
               "rack.errors" => $stderr,
